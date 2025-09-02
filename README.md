@@ -1,82 +1,119 @@
-Brain Tumor Detection using Deep Learning
-Using Python, TensorFlow, and Keras to build a Convolutional Neural Network (CNN) that classifies brain MRI scans for the presence of tumors. The model is trained on the Brain Tumor MRI Dataset from Kaggle.
+# Brain Tumor Detection using Deep Learning
 
-Check:
+## 📌 Project Overview
 
-Jupyter Notebook: brain_tumour_detection_using_deep_learning.ipynb
+-   Detects brain tumors from MRI images using **Deep Learning**.\
+-   Utilizes **Transfer Learning with VGG16**.\
+-   Classifies MRI scans into **4 categories**:
+    -   Glioma\
+    -   Meningioma\
+    -   Pituitary\
+    -   No Tumor
 
-Dataset: Brain Tumor MRI Dataset on Kaggle
+------------------------------------------------------------------------
 
-Project Workflow
-First, we start by preparing our data:
+## ⚙️ Requirements
 
-Loading MRI images from their respective directories (yes/no).
+-   Python 3.x\
+-   Libraries:
+    -   TensorFlow / Keras\
+    -   NumPy\
+    -   Matplotlib\
+    -   Seaborn\
+    -   scikit-learn\
+    -   PIL (Pillow)
 
-Preprocessing images by resizing them to a uniform size.
+------------------------------------------------------------------------
 
-Applying data augmentation to increase the diversity of the training set and reduce overfitting.
+## 📂 Dataset
 
-Then we build and train our model:
+-   Dataset structure:
+    -   `/Training/` → training images\
+    -   `/Testing/` → testing images\
+-   Image size: **128 × 128 pixels**\
+-   Loaded using preprocessing utilities.
 
-Construct a Sequential CNN model with convolutional, pooling, and dense layers.
+------------------------------------------------------------------------
 
-Compile the model using an appropriate optimizer and loss function.
+## 🧠 Model Architecture
 
-Train the model on the prepared dataset, validating its performance on a separate test set.
+-   Base model: **VGG16** (pre-trained on ImageNet).\
+-   Custom layers added on top:
+    -   Flatten\
+    -   Dropout (0.3, then 0.2)\
+    -   Dense (128 neurons, ReLU)\
+    -   Output Dense (Softmax, 4 classes)\
+-   **Last 3 VGG16 layers unfrozen** for fine-tuning.
 
-Finally, we evaluate the model and make predictions:
+------------------------------------------------------------------------
 
-Visualize the training history (accuracy and loss) to assess learning.
+## 🏋️ Training Setup
 
-Evaluate the final model accuracy on the test data.
+-   Image size: **128 × 128**\
+-   Batch size: **20**\
+-   Epochs: **5**\
+-   Optimizer: **Adam**\
+-   Learning Rate: **0.0001**\
+-   Loss: **Sparse Categorical Crossentropy**
 
-Use the trained model to predict whether new, unseen MRI images contain tumors.
+------------------------------------------------------------------------
 
-Key Objective
-The primary goal is to answer the following question:
+## 📊 Evaluation
 
-Can we build a deep learning model to accurately and automatically classify brain MRI scans as either containing a tumor or not?
+-   Metrics used:
+    -   Accuracy\
+    -   Classification report\
+    -   Confusion matrix\
+    -   ROC curve\
+-   Visualization of training/validation loss and accuracy included.
 
-To answer this, we walk through several key deep learning and data processing methods:
+------------------------------------------------------------------------
 
-Building a CNN architecture from scratch.
+## 💾 Saving & Loading
 
-Using ImageDataGenerator for preprocessing and data augmentation.
+-   Trained model saved as:
 
-Splitting data for training and testing.
+    ``` bash
+    model.h5
+    ```
 
-Compiling, fitting, and evaluating a Keras model.
+-   Can be reloaded using:
 
-Visualizing results with Matplotlib.
+    ``` python
+    from tensorflow.keras.models import load_model
+    model = load_model("model.h5")
+    ```
 
-Setup and Usage
-Prerequisites: Python 3.7+, pip, and Jupyter Notebook or Google Colab (recommended).
+------------------------------------------------------------------------
 
-Clone & Install Dependencies:
+## 🚀 Usage
 
-git clone [https://github.com/your-username/brain-tumor-detection.git](https://github.com/your-username/brain-tumor-detection.git)
-cd brain-tumor-detection
-pip install -r requirements.txt
+1.  Clone this repository
 
-Prepare Dataset:
+    ``` bash
+    git clone <repo_url>
+    cd brain_tumour_detection
+    ```
 
-Download the Brain Tumor MRI Dataset.
+2.  Install dependencies
 
-Upload the dataset zip file to a folder in your Google Drive.
+    ``` bash
+    pip install -r requirements.txt
+    ```
 
-Run in Colab:
+3.  Place dataset in the proper structure (`Training/`, `Testing/`).\
 
-Upload the .ipynb file to Google Colab.
+4.  Run Jupyter Notebook
 
-Mount your Google Drive and update the file path in the notebook to point to your dataset zip file.
+    ``` bash
+    jupyter notebook brain_tumour_detection_using_deep_learning.ipynb
+    ```
 
-Execute the cells sequentially.
+5.  Train & evaluate the model.
 
-Results
-The notebook visualizes the training/validation accuracy and loss. It also reports the final model accuracy on the test set and shows prediction examples on sample images.
+------------------------------------------------------------------------
 
-Contributing
-Contributions are welcome. Please fork the repository, create a new branch for your feature, and submit a pull request.
+## 📈 Results
 
-License
-This project is licensed under the MIT License.
+-   Successfully detects tumors into 4 classes.\
+-   Achieved high accuracy on test data (see notebook plots).
