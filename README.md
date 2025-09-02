@@ -1,39 +1,53 @@
 Brain Tumor Detection using Deep Learning
-A Convolutional Neural Network (CNN) built with TensorFlow and Keras to classify brain MRI scans for the presence of tumors.
+Using Python, TensorFlow, and Keras to build a Convolutional Neural Network (CNN) that classifies brain MRI scans for the presence of tumors. The model is trained on the Brain Tumor MRI Dataset from Kaggle.
 
-Table of Contents
-Overview
+Check:
 
-Dataset
+Jupyter Notebook: brain_tumour_detection_using_deep_learning.ipynb
 
-Model Architecture
+Dataset: Brain Tumor MRI Dataset on Kaggle
 
-Setup and Usage
+Project Workflow
+First, we start by preparing our data:
 
-Results
+Loading MRI images from their respective directories (yes/no).
 
-Contributing
+Preprocessing images by resizing them to a uniform size.
 
-License
+Applying data augmentation to increase the diversity of the training set and reduce overfitting.
 
-Overview
-This project demonstrates a deep learning approach for brain tumor detection from MRI images. It serves as an educational tool for data scientists and researchers interested in medical imaging AI. The model uses a CNN to classify images, following a standard pipeline: data preprocessing, augmentation, model training, and evaluation. While intended for research, it showcases a methodology that could be adapted for future clinical tools.
+Then we build and train our model:
 
-Dataset
-The model is trained on the Brain Tumor MRI Dataset from Kaggle, which contains images labeled as yes (with tumor) and no (without tumor). You will need to download this dataset to run the project.
+Construct a Sequential CNN model with convolutional, pooling, and dense layers.
 
-Model Architecture
-A Sequential CNN with the following key layers:
+Compile the model using an appropriate optimizer and loss function.
 
-Conv2D + MaxPooling2D: Two sets of these layers to extract features.
+Train the model on the prepared dataset, validating its performance on a separate test set.
 
-Flatten: Converts 2D features to a 1D vector.
+Finally, we evaluate the model and make predictions:
 
-Dense: A fully connected layer with 512 units (ReLU activation).
+Visualize the training history (accuracy and loss) to assess learning.
 
-Output Layer: A single Dense unit with Sigmoid activation for binary classification.
+Evaluate the final model accuracy on the test data.
 
-The model uses the Adam optimizer and binary_crossentropy loss.
+Use the trained model to predict whether new, unseen MRI images contain tumors.
+
+Key Objective
+The primary goal is to answer the following question:
+
+Can we build a deep learning model to accurately and automatically classify brain MRI scans as either containing a tumor or not?
+
+To answer this, we walk through several key deep learning and data processing methods:
+
+Building a CNN architecture from scratch.
+
+Using ImageDataGenerator for preprocessing and data augmentation.
+
+Splitting data for training and testing.
+
+Compiling, fitting, and evaluating a Keras model.
+
+Visualizing results with Matplotlib.
 
 Setup and Usage
 Prerequisites: Python 3.7+, pip, and Jupyter Notebook or Google Colab (recommended).
